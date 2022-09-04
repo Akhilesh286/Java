@@ -23,7 +23,17 @@ def run (argument):
   
   time = str(datetime.datetime.now()-startTime)
   
-  print (cl.getColors.blue(time))
+  print ("")
+  timeInSecond = time.split(":")
+  
+  print (
+    cl.getColors.blue("<--"+timeInSecond[2]+"s-->")
+    )
+  
+  file_size = os.stat(argument)
+  
+  print("Size of file :", cl.getColors.pink(
+    str(file_size.st_size)), "bytes")
 
 
 
@@ -36,16 +46,16 @@ def createClass ():
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         //---------Code-----------//
-        
     }
 }
 """
 
+  Class = className.split(".")[0]
   f = open(f"{className}.java", "a")
   
   f.write(f"""package {package};
 import java.util.Scanner;
-class {className} {code}
+class {Class} {code}
   """)
   
   f.close()
